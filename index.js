@@ -11,6 +11,49 @@ app.use(morgan('common'));
 /* allows the return of multiple static files in response to a request */
 app.use(express.static('public'));
 
+let myMovies = [
+    {
+      title: '2001: A Space Odyssey',
+      release: '1968'
+    },
+    {
+      title: 'The Godfather',
+      release: '1972'
+    },
+    {
+      title: 'Citizen Kane',
+      release: '1941'
+    },
+    {
+      title: 'Raiders of the Lost Ark',
+      release: '1981'
+    },
+    {
+      title: 'La Dolce Vita',
+      release: '1960'
+    },
+    {
+      title: 'Seven Samuri',
+      release: '1954'
+    },
+    {
+      title: 'In the Mood for Love',
+      release: '2000'
+    },
+    { 
+      title: 'There Will Be Blood',
+      release: '2007'
+    },
+    {
+      title: 'Singin\' in the Rain',
+      release: '1952'
+    },
+    {
+      title: 'High Fidelity',
+      release: '2000'
+    }
+
+  ];
 
 /* GET requests */
 app.get('/movies', (req, res) => {
