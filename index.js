@@ -61,3 +61,13 @@ let myMovies = [
 
   ];
 
+/* GET requests */
+app.get('/movies', (req, res) => {
+    res.json('myMovies');
+  });
+
+/* res.send object replaces response.writeHead and response.end code */
+app.get('/', (req, res) => {
+    res.send('Welcome to MyFlix Movie App!');
+});
+
