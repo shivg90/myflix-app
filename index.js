@@ -9,13 +9,9 @@ const fs = require('fs');
 const path = require ('path');
 
 /* invoking morgan, instead of myLogger() function */
-app.use(morgan('common', {stream: accessLogStream}));
+app.use(morgan('common'));
 
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
-
-app.use(morgan('update', {
-    stream: accessLogStream
-}))
 
 /* allows the return of multiple static files in response to a request */
 app.use(express.static('public'));
