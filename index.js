@@ -11,7 +11,7 @@ const path = require ('path');
 /* invoking morgan, instead of myLogger() function */
 app.use(morgan('common', {stream: accessLogStream}));
 
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'file.log'), {flags: 'a'})
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'log.txt'), {flags: 'a'})
 
 app.use(morgan('update', {
     stream: accessLogStream
