@@ -71,3 +71,9 @@ app.get('/', (req, res) => {
     res.send('Welcome to MyFlix Movie App!');
 });
 
+/* error handler comes after all route calls and app.use but before app.listen */
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('It\'s not working right now!');
+  });
+
