@@ -13,6 +13,8 @@ http.createServer((request, response) => {
   response.writeHead(200, {'Content-Type': 'text/plain'});
   response.end('Welcome to my book club!\n');
 }).listen(8080);
+/* allows the return of multiple static files in response to a request */
+app.use(express.static('public'));
 
 console.log('My first Node test server is running on Port 8080.');    {
 let myMovies = [
