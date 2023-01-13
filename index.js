@@ -77,3 +77,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('It\'s not working right now!');
   });
 
+/* listen for requests, replaces http.createServer code */
+app.listen(8080, () => {
+    console.log('Your app is listening on port 8080.');
+  });
