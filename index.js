@@ -1,9 +1,13 @@
 /* importing the express package locally */
 const express = require('express');
+/* importing morgan */
+  morgan = require('morgan');
 /* declaring the variable 'app' and attached all functionalities of express to it */
 const app = express();
 
 const http = require('http');
+/* invoking morgan, instead of myLogger() function */
+app.use(morgan('common'));
 
 http.createServer((request, response) => {
   response.writeHead(200, {'Content-Type': 'text/plain'});
