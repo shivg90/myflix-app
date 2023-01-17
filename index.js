@@ -38,10 +38,10 @@ let movies = [
       "release": "1968",
       "genre": {
         "name": "comedy",
-      }
+      },
       "director": {
         "name": "placeholder",
-      }
+      },
       "imageUrl": "link to image URL",
       "featured":false
     },
@@ -51,10 +51,10 @@ let movies = [
       "release": "1972",
       "genre": {
         "name": "thriller",
-      }
+      },
       "director": {
         "name": "placeholder",
-      }
+      },
       "imageUrl": "link to image URL",
       "featured":false
     },
@@ -64,10 +64,10 @@ let movies = [
       "release": "1941",
       "genre": {
         "name": "comedy",
-      }
+      },
       "director": { 
         "name": "placeholder",
-      }
+      },
       "imageUrl": "link to image URL",
       "featured":false
     },
@@ -77,10 +77,10 @@ let movies = [
       "release": "1981",
       "genre": {
         "name": "thriller",
-      }
+      },
       "director": {
         "name": "placeholder",
-      }
+      },
       "imageUrl": 'link to image URL',
       "featured": 'false'
     },
@@ -90,12 +90,13 @@ let movies = [
       "release": "1960",
       "genre": {
         "name": "comedy",
-      }
+      },
       "director": {
         "name": "placeholder",
-      }
+      },
       "imageUrl": "link to image URL",
       "featured":false
+    }
   
   ];
 
