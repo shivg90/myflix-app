@@ -222,7 +222,7 @@ app.delete('/users/:id/:movieTitle', (req, res) => {
   let user = users.find( user => user.id == id );
 
   if (user) {
-    user.favoriteMovies = user.favoriteMovies.filter( title => title !== movieTitle )
+    user.favoriteMovie = user.favoriteMovie.filter( title => title !== movieTitle )
     res.status(200).send(`${movieTitle} has been removed from user ${id}'s array`);
   } else {
     res.status(400).send('user name not found')
