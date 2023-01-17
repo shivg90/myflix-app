@@ -38,9 +38,13 @@ let movies = [
       "release": "1968",
       "genre": {
         "name": "comedy",
+        "description": "placeholder description",
       },
       "director": {
         "name": "placeholder",
+        "bio": "placeholder bio",
+        "birth year": "1970",
+        "death year": "2023",
       },
       "imageUrl": "link to image URL",
       "featured":false
@@ -51,9 +55,13 @@ let movies = [
       "release": "1972",
       "genre": {
         "name": "thriller",
+        "description": "placeholder description",
       },
       "director": {
         "name": "placeholder",
+        "bio": "placeholder bio",
+        "birth year": "1970",
+        "death year": "2023",
       },
       "imageUrl": "link to image URL",
       "featured":false
@@ -64,9 +72,13 @@ let movies = [
       "release": "1941",
       "genre": {
         "name": "comedy",
+        "description": "placeholder description",
       },
       "director": { 
         "name": "placeholder",
+        "bio": "placeholder bio",
+        "birth year": "1970",
+        "death year": "2023",
       },
       "imageUrl": "link to image URL",
       "featured":false
@@ -77,9 +89,13 @@ let movies = [
       "release": "1981",
       "genre": {
         "name": "thriller",
+        "description": "placeholder description",
       },
       "director": {
         "name": "placeholder",
+        "bio": "placeholder bio",
+        "birth year": "1970",
+        "death year": "2023",
       },
       "imageUrl": 'link to image URL',
       "featured": 'false'
@@ -90,9 +106,13 @@ let movies = [
       "release": "1960",
       "genre": {
         "name": "comedy",
+        "description": "placeholder description",
       },
       "director": {
         "name": "placeholder",
+        "bio": "placeholder bio",
+        "birth year": "1970",
+        "death year": "2023",
       },
       "imageUrl": "link to image URL",
       "featured":false
