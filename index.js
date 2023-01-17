@@ -22,12 +22,12 @@ let users = [
   {
     "id": "1.1",
     "name": "John",
-    "favouriteMovie": []
+    "favoriteMovie": []
   },
   {
     "id": "1.2",
     "name": "Sarah",
-    "favouriteMovie": "Kill Bill",
+    "favoriteMovie": "Kill Bill",
   }
 ];
 
@@ -205,7 +205,7 @@ app.post('/users/:id/:movieTitle', (req, res) => {
   let user = users.find( user => user.id == id );
 
   if (user) {
-    user.favouriteMovie.push(movieTitle);
+    user.favoriteMovie.push(movieTitle);
     res.status(200).send(`${movieTitle} has been added to user ${id}'s array`);
   } else {
     res.status(400).send('user name not found')
