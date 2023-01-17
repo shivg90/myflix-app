@@ -27,7 +27,7 @@ let users = [
   {
     "id": "1.2",
     "name": "Sarah",
-    "favouriteMovie": "The Godfather"
+    "favouriteMovie": "The Breakfast Club"
   }
 ];
 
