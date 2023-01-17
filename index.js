@@ -27,7 +27,7 @@ let users = [
   {
     "id": "1.2",
     "name": "Sarah",
-    "favoriteMovie": "Kill Bill",
+    "favoriteMovie": ["Kill Bill"],
   }
 ];
 
