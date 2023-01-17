@@ -6,8 +6,7 @@ const express = require('express');
       path = require ('path');
       bodyParser = require('body-parser');
       uuid = require('uuid');
-
-const accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {flags: 'a'})
+      accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {flags: 'a'});
 
 /* invoking morgan, instead of myLogger() function */
 app.use(morgan('common', {
@@ -21,149 +20,83 @@ app.use(bodyParser.json());
 
 let users = [
   {
-    id: '1.1',
-    name: 'John',
-    favouriteMovie: []
+    "id": "1.1",
+    "name": "John",
+    "favouriteMovie": []
   },
   {
-    id: '1.2',
-    name: 'Sarah',
-    favouriteMovie: 'The Godfather'
+    "id": "1.2",
+    "name": "Sarah",
+    "favouriteMovie": "The Godfather"
   }
 ];
 
 let movies = [
     {
-      title: '2001: A Space Odyssey',
-      description: 'describe movie',
-      release: '1968',
-      genre: {
-        name: 'comedy',
+      "title": "2001: A Space Odyssey",
+      "description": "describe movie",
+      "release": "1968",
+      "genre": {
+        "name": "comedy",
       }
-      director: {
-        name: 'placeholder',
+      "director": {
+        "name": "placeholder",
       }
-      imageUrl: 'link to image URL',
-      featured: 'false'
+      "imageUrl": "link to image URL",
+      "featured":false
     },
     {
-      title: 'The Godfather',
-      description: 'describe movie',
-      release: '1972',
-      genre: {
-        name: 'thriller',
+      "title": "The Godfather",
+      "description": "describe movie",
+      "release": "1972",
+      "genre": {
+        "name": "thriller",
       }
-      director: {
-        name: 'placeholder',
+      "director": {
+        "name": "placeholder",
       }
-      imageUrl: 'link to image URL',
-      featured: 'false'
+      "imageUrl": "link to image URL",
+      "featured":false
     },
     {
-      title: 'Citizen Kane',
-      description: 'describe movie',
-      release: '1941',
-      genre: {
-        name: 'comedy',
+      "title": "Citizen Kane",
+      "description": "describe movie",
+      "release": "1941",
+      "genre": {
+        "name": "comedy",
       }
-      director: { 
-        name: 'placeholder',
+      "director": { 
+        "name": "placeholder",
       }
-      imageUrl: 'link to image URL',
-      featured: 'false'
+      "imageUrl": "link to image URL",
+      "featured":false
     },
     {
-      title: 'Raiders of the Lost Ark',
-      description: 'describe movie',
-      release: '1981',
-      genre: {
-        name: 'thriller',
+      "title": "Raiders of the Lost Ark",
+      "description": "describe movie",
+      "release": "1981",
+      "genre": {
+        "name": "thriller",
       }
-      director: {
-        name: 'placeholder',
+      "director": {
+        "name": "placeholder",
       }
-      imageUrl: 'link to image URL',
-      featured: 'false'
+      "imageUrl": 'link to image URL',
+      "featured": 'false'
     },
     {
-      title: 'La Dolce Vita',
-      description: 'describe movie',
-      release: '1960',
-      genre: {
-        name: 'comedy',
+      "title": "La Dolce Vita",
+      "description": "describe movie",
+      "release": "1960",
+      "genre": {
+        "name": "comedy",
       }
-      director: {
-        name: 'placeholder',
+      "director": {
+        "name": "placeholder",
       }
-      imageUrl: 'link to image URL',
-      featured: 'false'
-    },
-    {
-      title: 'Seven Samuri',
-      description: 'describe movie',
-      release: '1954',
-      genre: {
-        name: 'thriller',
-      }
-      director: {
-        name: 'placeholder',
-      }
-      imageUrl: 'link to image URL',
-      featured: 'false'
-    },
-    {
-      title: 'In the Mood for Love',
-      description: 'describe movie',
-      release: '2000',
-      genre: {
-        name: 'comedy',
-      }
-      director: {
-        name: 'placeholder',
-      }
-      imageUrl: 'link to image URL',
-      featured: 'false'
-    },
-    { 
-      title: 'There Will Be Blood',
-      description: 'describe movie',
-      release: '2007',
-      genre: {
-        name: 'thriller',
-      }
-      director: {
-        name: 'placeholder',
-      }
-      imageUrl: 'link to image URL',
-      featured: 'false'
-    },
-    {
-      title: 'Singin\' in the Rain',
-      description: 'describe movie',
-      release: '1952',
-      genre: {
-        name: 'comedy',
-      }
-      director: {
-        name: 'placeholder',
-      }
-      imageUrl: 'link to image URL',
-      featured: 'false'
-    },
-    {
-      title: 'High Fidelity',
-      description: 'describe movie',
-      release: '2000',
-      genre: {
-        name: 'thriller',
-      }
-      director: {
-        name: 'placeholder',
-      }
-      imageUrl: 'link to image URL',
-      featured: 'false'
-    }
-
+      "imageUrl": "link to image URL",
+      "featured":false
+  
   ];
 
 /* res.send object replaces response.writeHead and response.end code */
