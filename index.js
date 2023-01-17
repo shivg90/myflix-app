@@ -125,10 +125,10 @@ app.get('/movies/:title', (req, res) => {
 /* 3. GETs specific movie data by genre */
 app.get('/movies/genre/:genreName', (req, res) => {
   const { genreName } = req.params;
-  const genre = movies.find( movie => movie.genre.Name === genreName ).genre;
+  const genre = movies.find( movie => movie.genre.name === genreName ).genre;
 
-  if (movie) {
-    res.status(200).json(movie);
+  if (genre) {
+    res.status(200).json(genre);
   } else {
     res.status(400).send('this genre doesn\'t exist!')
   }
@@ -137,10 +137,10 @@ app.get('/movies/genre/:genreName', (req, res) => {
 /* 4. GETs specific movie data by director */
 app.get('/movies/director/:directorName', (req, res) => {
   const { directorName } = req.params;
-  const director = movies.find( movie => movie.director.Name === directorName ).director;
+  const director = movies.find( movie => movie.director.name === directorName ).director;
 
-  if (movie) {
-    res.status(200).json(movie);
+  if (director) {
+    res.status(200).json(director);
   } else {
     res.status(400).send('this director doesn\'t exist!')
   }
