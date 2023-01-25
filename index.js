@@ -77,9 +77,9 @@ app.get('/movies', (req, res) => {
 
 /* GET a specific movie by title with MONGOOSE */
 app.get('/movies/:Title', (req, res) => {
-  Movies.find({ Title: req.params.Title })
-    .then((movies) => {
-      res.json(movies);
+  Movies.findOne({ Title: req.params.Title })
+    .then((movie) => {
+      res.json(movie);
     })
     .catch((err) => {
       console.error(err);
@@ -222,7 +222,7 @@ app.put('/users/:Username', (req, res) => {
 }) */
 
 /* POST: allow users to add a movie to their favourites with MONGOOSE  */
-app.post('/users/:Username/:MovieID', (req, res) => {
+app.post('/users/:Username/movies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $push: { FavoriteMovies: req.params.MovieID }
   },
