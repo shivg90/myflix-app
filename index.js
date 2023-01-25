@@ -12,7 +12,10 @@ const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
-const accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {flags: 'a'});
+const Genres = Models.Genre;
+const Directors = Models.Director;
+
+accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {flags: 'a'});
 
 mongoose.connect('mongodb://localhost:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
