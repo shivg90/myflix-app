@@ -76,7 +76,7 @@ app.get('/movies', (req, res) => {
   }); */
 
 /* GET a specific movie by title with MONGOOSE */
-app.get('/movies/:title', (req, res) => {
+app.get('/movies/:Title', (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
       res.json(movie);
