@@ -1,14 +1,15 @@
 /* importing all needed packages locally */
-const express = require('express');
-      morgan = require('morgan');
-      fs = require('fs');
-      path = require ('path');
-      bodyParser = require('body-parser');
-      uuid = require('uuid');
-      mongoose = require('mongoose');
-      Models = require('./mongoose.js');
+const express = require('express'),
+    fs = require('fs'),
+    path = require ('path'),
+    bodyParser = require('body-parser'),
+    uuid = require('uuid');
 
-const app = express();    
+const morgan = require('morgan');
+const app = express();  
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
 const Movies = Models.Movie;
 const Users = Models.User;
 const accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {flags: 'a'});
@@ -610,4 +611,4 @@ app.listen(8080, () => {
 
   /*
 Title: "Psycho",
-Description: "A Phoenix secretary embezzles $40,000 from her employer\'s client, goes on the run and checks into a remote motel. The motel is managed by a quiet young man called Norman who seems to be dominated by his mother.",
+Description: "A Phoenix secretary embezzles $40,000 from her employer\'s client, goes on the run and checks into a remote motel. The motel is managed by a quiet young man called Norman who seems to be dominated by his mother."*/
