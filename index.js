@@ -77,9 +77,9 @@ app.get('/movies', (req, res) => {
 
 /* GET a specific movie by title with MONGOOSE */
 app.get('/movies/:Title', (req, res) => {
-  Movies.findOne({ Title: req.params.Title })
-    .then((movie) => {
-      res.json(movie);
+  Movies.find({ Title: req.params.Title })
+    .then((movies) => {
+      res.json(movies);
     })
     .catch((err) => {
       console.error(err);
@@ -98,10 +98,10 @@ app.get('/movies/:Title', (req, res) => {
 }) */
 
 /* GET movie data by genre name with MONGOOSE */
-app.get('/movies/genre/:genreName', (req, res) => {
-  Movies.findOne({ 'Genre.Name': req.params.genreName })
-    .then((movie) => {
-      res.status(201).json(movie.Genre);
+app.get('/movies/genre/:Name', (req, res) => {
+  Movies.findOne({ 'Genre.Name': req.params.Name })
+    .then((movies) => {
+      res.status(201).json(movies.Genre);
     })
     .catch((err) => {
       console.error(err);
