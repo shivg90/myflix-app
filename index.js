@@ -103,7 +103,7 @@ app.post('/movies', (req, res) => {
             Name: req.body.Name,
             Bio: req.body.Bio,
           },
-          ImageURL: req.body.ImageURL,
+          ImagePath: req.body.ImageURL,
           Featured: req.body.Boolean,
           Release: req.body.Date
         })
@@ -119,7 +119,7 @@ app.post('/movies', (req, res) => {
 });
 
 /* POST allow users to add a movie to their favourites at endpoint /users/:id/movies/:MovieId */
-app.post('/users/:Username/movies/:MovieID', (req, res) => {
+app.post('/users/:Username/favorites', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $push: { FavoriteMovies: req.params.MovieID }
   },
