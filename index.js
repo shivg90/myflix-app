@@ -21,6 +21,11 @@ mongoose.connect('mongodb://localhost:27017/myflixDB', { useNewUrlParser: true, 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
+
 app.use(express.static('public'));
 app.use(morgan('common', {
   stream: fs.createWriteStream('./log.txt.log', {flags: 'a'})
