@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to MyFlix Movie App!');
 });
 
-/* GET request for all movies with MONGOOSE */
+/* GET request for all movies at endpoint /movies */
 app.get('/movies', (req, res) => {
   Movies.find()
     .then((movies) => {
@@ -44,7 +44,7 @@ app.get('/movies', (req, res) => {
     });
 });
 
-/* GET a specific movie by title with MONGOOSE */
+/* GET a specific movie by title at endpoint /movies/:Title */
 app.get('/movies/:Title', (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
@@ -56,7 +56,7 @@ app.get('/movies/:Title', (req, res) => {
     });
 });
 
-/* GET movie data by genre name with MONGOOSE */
+/* GET movie data by genre name at endpoint /movies/genre/:Name */
 app.get('/movies/genre/:Name', (req, res) => {
   Movies.findOne({ 'Genre.Name': req.params.Name })
     .then((movies) => {
@@ -68,7 +68,7 @@ app.get('/movies/genre/:Name', (req, res) => {
     });
 });
 
-/* GET movie data by director name with MONGOOSE */
+/* GET movie data by director name at endpoint /movies/director/:directorName */
 app.get('/movies/director/:directorName', (req, res) => {
   Movies.findOne({ 'Director.Name': req.params.directorName })
     .then((movie) => {
@@ -80,7 +80,7 @@ app.get('/movies/director/:directorName', (req, res) => {
     });
 });
 
-/* route to add a new movie to database */
+/* POST route to add a new movie to database at endpoint /movies */
 app.post('/movies', (req, res) => {
   Movies.findOne({ Username: req.body.Title })
     .then((movie) => {
@@ -113,7 +113,7 @@ app.post('/movies', (req, res) => {
     });
 });
 
-/* POST: allow users to add a movie to their favourites with MONGOOSE  */
+/* POST allow users to add a movie to their favourites at endpoint /users/:id/movies/:MovieId */
 app.post('/users/:id/movies/:MovieId', (req, res) => {
   Users.findOneAndUpdate({ UserId: req.params.UserId }, {
     $push: { FavoriteMovies: req.params.MovieId }
@@ -129,7 +129,7 @@ app.post('/users/:id/movies/:MovieId', (req, res) => {
   });
 });
 
-// delete a movie, code from Emanuel //
+// code from Emanuel, delete a movie from favorites at endpoint /users/:id/favorites/:MovieId //
 
 app.delete('users/:id/favorites/:movieId', async (req, res) => {
   try {
@@ -144,7 +144,7 @@ app.delete('users/:id/favorites/:movieId', async (req, res) => {
   }
   });
 
-/* DELETE: allow users to remove a movie from favourites with MONGOOSE 
+/* DELETE: allow users to remove a movie from favourites at endpoint /users/:Username/:MovieId
 app.delete('/users/:Username/:MovieId', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $pull: { FavoriteMovies: req.params.MovieId }
@@ -160,7 +160,7 @@ app.delete('/users/:Username/:MovieId', (req, res) => {
   });
 }); */
 
-/* GET request for all users with MONGOOSE */
+/* GET all users at endpoint /users */
 
 app.get('/users', (req, res) => {
   Users.find()
@@ -173,7 +173,7 @@ app.get('/users', (req, res) => {
     });
 });
 
-/* GET a specific user by username with MONGOOSE */
+/* GET a specific user by username at endpoint /users/:Username */
 
 app.get('/users/:Username', (req, res) => {
   Users.findOne({ Username: req.params.Username })
@@ -186,7 +186,7 @@ app.get('/users/:Username', (req, res) => {
     });
 });
 
-/* POST: allows new users to register with MONGOOSE */
+/* POST: allows new users to register at endpoint /users */
 app.post('/users', (req, res) => {
   Users.findOne({ Username: req.body.Username })
   .then((user) => {
@@ -217,7 +217,7 @@ app.post('/users', (req, res) => {
 }
 );
 
-/* PUT: UPDATE user info by username using MONGOOSE */
+/* UPDATE user info by username at endpoint /users/:Username */
 app.put('/users/:Username', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
@@ -238,7 +238,7 @@ app.put('/users/:Username', (req, res) => {
   });
 });
 
-/* DELETE: allow users to de-register with MONGOOSE */
+/* DELETE a user at endpoint /users/:Username */
 app.delete('/users/:Username', (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username })
   .then((user) => {
