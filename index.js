@@ -192,7 +192,8 @@ app.put('/users/:Username', (req, res) => {
       Username: req.body.Username,
       Password: req.body.Password,
       Email: req.body.Email,
-      Birthday: req.body.Birthday
+      Birthday: req.body.Birthday,
+      FavoriteMovies: req.body.FavoriteMovies
     },
   },
   { new: true }, // This line makes sure that the updated document is returned
@@ -223,7 +224,7 @@ app.put('/users/:Username', (req, res) => {
 
 /* POST: allow users to add a movie to their favourites with MONGOOSE  */
 app.post('/users/:id/movies/:MovieId', (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.UserID }, {
+  Users.findOneAndUpdate({ UserID: req.params.UserID }, {
     $push: { FavoriteMovies: req.params.MovieId }
   },
   { new: true }, // This line makes sure that the updated document is returned
@@ -251,10 +252,27 @@ app.post('/users/:id/movies/:MovieId', (req, res) => {
   }
 }) */
 
-/* DELETE: allow users to remove a movie from favourites with MONGOOSE */
-app.delete('/users/:Username/:MovieID', (req, res) => {
+// delete a movie, code from Emanuel //
+
+app.delete('users/:id/favorites/:movieId', async (req, res) => {
+  try {
+    const user = await
+    user.findbyId(req.params.id);
+    user.FavoriteMovies.pull(req.params.movieId);
+    await user.save();
+    res.status(200).json( { message: "Movie removed from favorites" } );
+  }
+  catch(err) {
+    res.status(404).json( { message: err.message } );
+  }
+  });
+
+
+
+/* DELETE: allow users to remove a movie from favourites with MONGOOSE 
+app.delete('/users/:Username/:MovieId', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
-    $pull: { FavoriteMovies: req.params.MovieID }
+    $pull: { FavoriteMovies: req.params.MovieId }
   },
   { new: true }, // This line makes sure that the updated document is returned
   (err, updatedUser) => {
@@ -265,7 +283,9 @@ app.delete('/users/:Username/:MovieID', (req, res) => {
       res.json(updatedUser);
     }
   });
-});
+}); */
+
+
 /* OLD CODE
 app.delete('/users/:id/:movieTitle', (req, res) => {
   const { id, movieTitle } = req.params;
