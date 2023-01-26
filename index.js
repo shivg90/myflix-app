@@ -222,9 +222,9 @@ app.put('/users/:Username', (req, res) => {
 }) */
 
 /* POST: allow users to add a movie to their favourites with MONGOOSE  */
-app.post('/users/:Username/movies/:MovieID', (req, res) => {
-  Users.findOneAndUpdate({ UserID: req.params.UserID }, {
-    $push: { FavoriteMovies: req.params.ObjectID }
+app.post('/users/:id/movies/:MovieId', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.UserID }, {
+    $push: { FavoriteMovies: req.params.MovieId }
   },
   { new: true }, // This line makes sure that the updated document is returned
   (err, updatedUser) => {
