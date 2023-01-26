@@ -1,11 +1,11 @@
 /* importing all needed packages locally */
 const express = require('express'),
-    fs = require('fs'),
-    path = require ('path'),
-    bodyParser = require('body-parser'),
-    uuid = require('uuid');
+      fs = require('fs'),
+      path = require ('path'),
+      bodyParser = require('body-parser'),
+      uuid = require('uuid'),
+      morgan = require('morgan');
 
-const morgan = require('morgan');
 const app = express();  
 const mongoose = require('mongoose');
 const Models = require('./models.js');
@@ -85,7 +85,7 @@ app.get('/movies/director/:directorName', (req, res) => {
     });
 });
 
-/* async code, POST route to ass a new movie to database at endpoint /movies */
+/* async code, POST route to add a new movie to database at endpoint /movies */
 
 app.post('/movies', async (req, res) => {
   try {
