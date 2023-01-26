@@ -118,7 +118,22 @@ app.post('/movies', (req, res) => {
     });
 });
 
-/* POST allow users to add a movie to their favourites at endpoint /users/:id/movies/:MovieId */
+// code from Emanuel, add a movie to favorites at endpoint /users/:id/favorites //
+
+app.post('users/:id/favorites', async (req, res) => {
+  try {
+    const user = await Users.findbyId(req.params.id);
+    user.FavoriteMovies.push(req.params.movieId);
+    await user.save();
+    res.status(200).json( { message: "Movie added to favorites" } );
+  }
+  catch(err) {
+    res.status(404).json( { message: err.message } );
+  }
+  });
+
+
+/* POST allow users to add a movie to their favourites at endpoint /users/:Username/favorites 
 app.post('/users/:Username/favorites', (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
     $push: { FavoriteMovies: req.params.MovieID }
@@ -132,7 +147,7 @@ app.post('/users/:Username/favorites', (req, res) => {
       res.json(updatedUser);
     }
   });
-});
+}); */
 
 // code from Emanuel, delete a movie from favorites at endpoint /users/:id/favorites/:MovieId //
 
