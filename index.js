@@ -34,32 +34,6 @@ app.get('/', (req, res) => {
   res.send('Welcome to MyFlix Movie App!');
 });
 
-/* GET request for all users with MONGOOSE */
-
-app.get('/users', (req, res) => {
-  Users.find()
-    .then((users) => {
-      res.status(201).json(users);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-
-/* GET a specific user by username with MONGOOSE */
-
-app.get('/users/:Username', (req, res) => {
-  Users.findOne({ Username: req.params.Username })
-    .then((users) => {
-      res.status(201).json(users);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-
 /* GET request for all movies with MONGOOSE */
 app.get('/movies', (req, res) => {
   Movies.find()
@@ -141,6 +115,72 @@ app.get('/movies/director/:directorName', (req, res) => {
   }
 }) */
 
+app.post('/movies', (req, res) => {
+  Movies.findOne({ Username: req.body.Title })
+    .then((movie) => {
+      if (movie) {
+        return res.status(400).send(req.body.Title + 'already exists');
+      } else {
+        Movies.create({
+          Title: req.body.Title,
+          Description: req.body.Description,
+          Genre: {
+            Name: req.body.Name,
+            Description: req.body.Description,
+          },
+          Director: {
+            Name: req.body.Name,
+            Bio: req.body.Bio,
+          },
+          ImageURL: req.body.ImageURL,
+          Featured: req.body.Boolean,
+          Release: req.body.Date
+        })
+          .then((movie) => {
+            res.status(201).json(movie);
+          })
+          .catch((err) => {
+            console.log(err);
+            res.status(500).send('Error: ' + err);
+          });
+        }
+    });
+});
+
+/* GET request for all users with MONGOOSE */
+
+app.get('/users', (req, res) => {
+  Users.find()
+    .then((users) => {
+      res.status(201).json(users);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
+/* GET a specific user by username with MONGOOSE */
+
+app.get('/users/:Username', (req, res) => {
+  Users.findOne({ Username: req.params.Username })
+    .then((users) => {
+      res.status(201).json(users);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
+
+
+
+
+
+
+
+
 /* POST: allows new users to register with MONGOOSE */
 app.post('/users', (req, res) => {
   Users.findOne({ Username: req.body.Username })
@@ -193,7 +233,6 @@ app.put('/users/:Username', (req, res) => {
       Password: req.body.Password,
       Email: req.body.Email,
       Birthday: req.body.Birthday,
-      FavoriteMovies: req.body.FavoriteMovies
     },
   },
   { new: true }, // This line makes sure that the updated document is returned
