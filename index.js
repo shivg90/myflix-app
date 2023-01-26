@@ -78,8 +78,8 @@ app.get('/movies', (req, res) => {
 /* GET a specific movie by title with MONGOOSE */
 app.get('/movies/:Title', (req, res) => {
   Movies.findOne({ Title: req.params.Title })
-    .then((movies) => {
-      res.status(201).json(movies);
+    .then((movie) => {
+      res.status(201).json(movie);
     })
     .catch((err) => {
       console.error(err);
@@ -222,8 +222,8 @@ app.put('/users/:Username', (req, res) => {
 }) */
 
 /* POST: allow users to add a movie to their favourites with MONGOOSE  */
-app.post('/users/:Username/movies/:MovieID', (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, {
+app.post('/users/:UserID/movies/:MovieID', (req, res) => {
+  Users.findOneAndUpdate({ _id: req.params.UserID }, {
     $push: { FavoriteMovies: req.params.MovieID }
   },
   { new: true }, // This line makes sure that the updated document is returned
