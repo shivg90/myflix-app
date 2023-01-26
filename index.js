@@ -85,7 +85,40 @@ app.get('/movies/director/:directorName', (req, res) => {
     });
 });
 
-/* POST route to add a new movie to database at endpoint /movies */
+/* async code, POST route to ass a new movie to database at endpoint /movies */
+
+app.post('/movies', async (req, res) => {
+  try {
+  const movie = await Movies.findOne({Title: req.body.Title})
+  if (movie) {
+    return res.status(400).send(req.body.Title + 'already exists');
+  } else {
+    const newMovie = await Movies.create({
+      Title: req.body.Title,
+      Description: req.body.Description,
+      Genre: {
+        Name: req.body.Genre.Name,
+        Description: req.body.Genre.Description
+      },
+      Director: {
+        Name: req.body.Director.Name,
+        Bio: req.body.Director.Bio,
+        Birthyear: req.body.Director.Birthyear,
+        Deathyear: req.body.Director.Deathyear
+      },
+      ImagePath: req.body.ImagePath,
+      Featured: req.body.Featured,
+      Release: req.body.Release
+    })
+      res.status(201).json(newMovie)
+  }
+} catch (error) {
+  console.error(error);
+  res.status(500).send('Error' + error);
+}
+});
+
+/* POST route to add a new movie to database at endpoint /movies 
 app.post('/movies', (req, res) => {
   Movies.findOne({ Username: req.body.Title })
     .then((movie) => {
@@ -116,9 +149,9 @@ app.post('/movies', (req, res) => {
           });
         }
     });
-});
+}); */
 
-// code from Emanuel, add a movie to favorites at endpoint /users/:id/favorites //
+/* async code, add a movie to favorites at endpoint /users/:id/favorites */
 
 app.post('users/:id/favorites', async (req, res) => {
   try {
@@ -149,12 +182,11 @@ app.post('/users/:Username/favorites', (req, res) => {
   });
 }); */
 
-// code from Emanuel, delete a movie from favorites at endpoint /users/:id/favorites/:MovieId //
+// async code, delete a movie from favorites at endpoint /users/:id/favorites //
 
-app.delete('users/:id/favorites/:movieId', async (req, res) => {
+app.delete('users/:id/favorites', async (req, res) => {
   try {
-    const user = await
-    user.findbyId(req.params.id);
+    const user = await Users.findbyId(req.params.id);
     user.FavoriteMovies.pull(req.params.movieId);
     await user.save();
     res.status(200).json( { message: "Movie removed from favorites" } );
