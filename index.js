@@ -119,9 +119,9 @@ app.post('/movies', (req, res) => {
 });
 
 /* POST allow users to add a movie to their favourites at endpoint /users/:id/movies/:MovieId */
-app.post('/users/:id/movies/:MovieId', (req, res) => {
-  Users.findOneAndUpdate({ UserId: req.params.UserId }, {
-    $push: { FavoriteMovies: req.params.MovieId }
+app.post('/users/:Username/movies/:MovieID', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+    $push: { FavoriteMovies: req.params.MovieID }
   },
   { new: true }, // This line makes sure that the updated document is returned
   (err, updatedUser) => {
