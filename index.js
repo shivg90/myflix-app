@@ -255,6 +255,7 @@ app.post('/users/:id/movies/:MovieId', (req, res) => {
 // delete a movie, code from Emanuel //
 
 app.delete('users/:id/favorites/:movieId', async (req, res) => {
+  try {
     const user = await
     user.findbyId(req.params.id);
     user.FavoriteMovies.pull(req.params.movieId);
@@ -263,6 +264,7 @@ app.delete('users/:id/favorites/:movieId', async (req, res) => {
   }
   catch(err) {
     res.status(404).json( { message: err.message } );
+  }
   });
 
 
@@ -281,7 +283,7 @@ app.delete('/users/:Username/:MovieId', (req, res) => {
       res.json(updatedUser);
     }
   });
-}); */  
+}); */
 
 
 /* OLD CODE
