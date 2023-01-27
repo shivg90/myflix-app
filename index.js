@@ -22,7 +22,7 @@ accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {f
 
 mongoose.connect('mongodb://localhost:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-require('./auth')(app);
+let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
