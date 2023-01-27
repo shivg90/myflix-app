@@ -234,7 +234,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 
 app.post('/users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
-    const user = await Users.findbyId(req.params.id);
+    const user = await Users.findById(req.params.id);
     user.FavoriteMovies.push(req.params.movieId);
     await user.save();
     res.status(200).json( { message: "Movie added to favorites" } );
