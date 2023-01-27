@@ -20,7 +20,7 @@ const Directors = Models.Director;
 
 accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {flags: 'a'});
 
-mongoose.connect('mongodb://localhost:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 let auth = require('./auth')(app);
 const passport = require('passport');
