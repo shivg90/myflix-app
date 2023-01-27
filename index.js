@@ -246,9 +246,9 @@ app.post('users/:id/favorites', passport.authenticate('jwt', { session: false })
 
 
 /* POST allow users to add a movie to their favourites at endpoint /users/:Username/favorites */
-app.post('/users/:Username/movies/:movieId', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOneAndUpdate({ Username: req.params.Username }, {
-    $push: { FavoriteMovies: req.params.movieId }
+    $push: { FavoriteMovies: req.params.MovieID }
   },
   { new: true }, // This line makes sure that the updated document is returned
   (err, updatedUser) => {
