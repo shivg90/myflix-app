@@ -1,14 +1,18 @@
 /* importing all needed packages locally */
 const express = require('express'),
-      fs = require('fs'),
-      path = require ('path'),
-      bodyParser = require('body-parser'),
-      uuid = require('uuid'),
-      morgan = require('morgan');
+  bodyParser = require('body-parser'),
+  fs = require('fs'),
+  path = require ('path'),
+  uuid = require('uuid'),
+  morgan = require('morgan');
 
 const app = express();  
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let auth = require('./auth')(app);
+const passport = require('passport');
+require('./passport');
 
 const mongoose = require('mongoose');
 const Models = require('./models.js');
@@ -22,9 +26,7 @@ accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {f
 
 mongoose.connect('mongodb://127.0.0.1:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-let auth = require('./auth')(app);
-const passport = require('passport');
-require('./passport');
+
 
 app.use(express.static('public'));
 app.use(morgan('common', {
