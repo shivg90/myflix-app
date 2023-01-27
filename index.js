@@ -7,6 +7,9 @@ const express = require('express'),
       morgan = require('morgan');
 
 const app = express();  
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
@@ -18,9 +21,6 @@ const Directors = Models.Director;
 accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {flags: 'a'});
 
 mongoose.connect('mongodb://localhost:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true });
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 let auth = require('./auth')(app);
 const passport = require('passport');
@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 });
 
 /* GET request for all movies at endpoint /movies */
-app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
+app.get('/movies', passport.authenticate('jwt', {session: false}), (req, res) => {
   Movies.find()
     .then((movies) => {
       res.json(movies);
