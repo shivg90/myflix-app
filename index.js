@@ -232,17 +232,17 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 
 /* async code, add a movie to favorites at endpoint /users/:id/favorites */
 
-app.post('users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.post('/users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const user = await Users.findbyId(req.params.id);
     user.FavoriteMovies.push(req.params.movieId);
     await user.save();
     res.status(200).json( { message: "Movie added to favorites" } );
   }
-  catch(err) {
+    catch(err) {
     res.status(404).json( { message: err.message } );
   }
-  }); 
+});
 
 
 /* POST allow users to add a movie to their favourites at endpoint /users/:Username/favorites 
