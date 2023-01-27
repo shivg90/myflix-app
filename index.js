@@ -151,69 +151,7 @@ app.post('/movies', (req, res) => {
     });
 }); */
 
-/* async code, add a movie to favorites at endpoint /users/:id/favorites */
-
-app.post('users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
-    const user = await Users.findbyId(req.params.id);
-    user.FavoriteMovies.push(req.params.movieId);
-    await user.save();
-    res.status(200).json( { message: "Movie added to favorites" } );
-  }
-  catch(err) {
-    res.status(404).json( { message: err.message } );
-  }
-  });
-
-
-/* POST allow users to add a movie to their favourites at endpoint /users/:Username/favorites 
-app.post('/users/:Username/favorites', (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, {
-    $push: { FavoriteMovies: req.params.MovieID }
-  },
-  { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
-  });
-}); */
-
-// async code, delete a movie from favorites at endpoint /users/:id/favorites //
-
-app.delete('users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
-  try {
-    const user = await Users.findbyId(req.params.id);
-    user.FavoriteMovies.pull(req.params.movieId);
-    await user.save();
-    res.status(200).json( { message: "Movie removed from favorites" } );
-  }
-  catch(err) {
-    res.status(404).json( { message: err.message } );
-  }
-  });
-
-/* DELETE: allow users to remove a movie from favourites at endpoint /users/:Username/:MovieId
-app.delete('/users/:Username/:MovieId', (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, {
-    $pull: { FavoriteMovies: req.params.MovieId }
-  },
-  { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
-  });
-}); */
-
 /* GET all users at endpoint /users */
-
 app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.find()
     .then((users) => {
@@ -289,6 +227,67 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }), (r
     }
   });
 });
+
+/* async code, add a movie to favorites at endpoint /users/:id/favorites */
+
+app.post('users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const user = await Users.findbyId(req.params.id);
+    user.FavoriteMovies.push(req.params.movieId);
+    await user.save();
+    res.status(200).json( { message: "Movie added to favorites" } );
+  }
+  catch(err) {
+    res.status(404).json( { message: err.message } );
+  }
+  });
+
+
+/* POST allow users to add a movie to their favourites at endpoint /users/:Username/favorites 
+app.post('/users/:Username/favorites', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+    $push: { FavoriteMovies: req.params.MovieID }
+  },
+  { new: true }, // This line makes sure that the updated document is returned
+  (err, updatedUser) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
+}); */
+
+// async code, delete a movie from favorites at endpoint /users/:id/favorites //
+
+app.delete('users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const user = await Users.findbyId(req.params.id);
+    user.FavoriteMovies.pull(req.params.movieId);
+    await user.save();
+    res.status(200).json( { message: "Movie removed from favorites" } );
+  }
+  catch(err) {
+    res.status(404).json( { message: err.message } );
+  }
+  });
+
+/* DELETE: allow users to remove a movie from favourites at endpoint /users/:Username/:MovieId
+app.delete('/users/:Username/:MovieId', (req, res) => {
+  Users.findOneAndUpdate({ Username: req.params.Username }, {
+    $pull: { FavoriteMovies: req.params.MovieId }
+  },
+  { new: true }, // This line makes sure that the updated document is returned
+  (err, updatedUser) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
+    }
+  });
+}); */
 
 /* DELETE a user at endpoint /users/:Username */
 app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
