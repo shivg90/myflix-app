@@ -78,8 +78,8 @@ app.get('/movies/genre/:Name', passport.authenticate('jwt', { session: false }),
 /* GET movie data by director name at endpoint /movies/director/:directorName */
 app.get('/movies/director/:directorName', passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({ 'Director.Name': req.params.directorName })
-    .then((movie) => {
-      res.send(movie.Director);
+    .then((movies) => {
+      res.send(movies.Director);
     })
     .catch((err) => {
       console.error(err);
