@@ -38,7 +38,10 @@ const Directors = Models.Director;
 
 accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {flags: 'a'});
 
-mongoose.connect('mongodb://127.0.0.1:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// keep and use for local connetion //
+/* mongoose.connect('mongodb://127.0.0.1:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true }); */
+
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
 
@@ -242,7 +245,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
   check('Password', 'Password is required').not().isEmpty(),
   check('Email', 'Email does not appear to be valid').isEmail(),
-  check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'DD/MM/YYYY'})
+  check('Birthday', 'Birthday should be in the format YYYY-MM-DD').isDate({format:'DD/MM/YYYY'})
 ], (req, res) => {
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
