@@ -1,0 +1,11 @@
+{"_id":{"$oid":"63c9aaafa2cd9cc18afcc354"},"Username":"Hannah11","Password":"password2","Email":"hannah11@outlook.com","Birthday":{"$date":"1998-09-17T00:00:00Z"},"FavoriteMovies":[{"$oid":"63c960e2a2cd9cc18afcc351"},{"$oid":"63c93236a2cd9cc18afcc349"}],"__v":2}
+{"_id":{"$oid":"63d146247af1d96eb4fe247d"},"Username":"SiobhanG","Password":"12345","Email":"siobhan@test.com","FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d39d767af1d96eb4fe24cc"},"Username":"Siobhan123","Password":"Password456","Email":"siobhan@example.com","Birthday":{"$date":"2022-04-09T00:00:00Z"},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d3b920b29856d24cf7baff"},"Username":"Anna123","Password":"Password456","Email":"anna@example.com","Birthday":{"$date":"2022-04-09T00:00:00Z"},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d3bc98b29856d24cf7bb02"},"Username":"usertest","Password":"abcd","Email":"test@example.com","Birthday":{"$date":"2022-04-09T00:00:00Z"},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d40d5e0ef34d9e0bcaea6a"},"Username":"Steph","Password":"hello","Email":"hello@example.com","Birthday":{"$date":"2022-04-09T00:00:00Z"},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d585684be74e04084a203b"},"Username":"Liam123","Password":"$2b$10$O./WIkuTtd9g4ykd3.rx.O56oMNZ3.eKBy243c47NaDEC78o8AC3C","Email":"hello@example.com","Birthday":{"$date":"2022-04-09T00:00:00Z"},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d58bcc1f4411ff1b5d0f97"},"Username":"Madonna","Password":"$2b$10$RiPVpjhPBiYgAkNJWpLSBeq9AGmllA2XW3V47Nx2taiW8dbot9tPK","Email":"mad@example.com","Birthday":{"$date":"2000-06-05T22:00:00Z"},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d58bed1f4411ff1b5d0f9a"},"Username":"Prince","Password":"$2b$10$uhjexunNjpxJI4lj1yfDp.mD1noba0KVPrYZczSCHFfCTA4xnCsSu","Email":"prince@example.com","Birthday":{"$date":"2010-08-07T22:00:00Z"},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d58c141f4411ff1b5d0f9d"},"Username":"Marie123","Password":"$2b$10$dTeLMJqqfsj8srWcvYVOpu1WVKRDlsv1FoDlhr4.Y33oLVXZZzJKe","Email":"marie@example.com","Birthday":{"$date":{"$numberLong":"-1556154000000"}},"FavoriteMovies":[],"__v":0}
+{"_id":{"$oid":"63d58c371f4411ff1b5d0fa0"},"Username":"Simon456","Password":"$2b$10$TAsHlORRRKyNv0ey2bzamuDHKzHhZbf4iykdyphbA.BqDXLo4epoa","Email":"simon@example.com","Birthday":{"$date":"1980-04-03T23:00:00Z"},"FavoriteMovies":[],"__v":0}
