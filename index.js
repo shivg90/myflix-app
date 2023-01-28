@@ -195,10 +195,11 @@ app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (r
 /* POST: allows new users to register at endpoint /users */
 app.post('/users',
   [
-    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username is required and minimum length is 5 characters').isLength({min: 5}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
+    check('Email', 'Email does not appear to be valid').isEmail(),
+    check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'DD/MM/YYYY'})
   ], (req, res) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -237,10 +238,11 @@ app.post('/users',
 /* UPDATE user info by username at endpoint /users/:Username */
 app.put('/users/:Username', passport.authenticate('jwt', { session: false }), 
 [
-  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username is required and minimum length is 5 characters').isLength({min: 5}),
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
   check('Password', 'Password is required').not().isEmpty(),
-  check('Email', 'Email does not appear to be valid').isEmail()
+  check('Email', 'Email does not appear to be valid').isEmail(),
+  check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'DD/MM/YYYY'})
 ], (req, res) => {
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
