@@ -278,11 +278,6 @@ app.delete('/users/:Username', passport.authenticate('jwt', { session: false }),
   });
 });
 
-/* GET api documentation at endpoint /documentation */
-app.get('/documentation', (req, res) => {
-  res.sendFile('public/documentation.html', { root: __dirname });
-});
-
 /* error handler comes after all route calls and app.use but before app.listen */
 app.use((err, req, res, next) => {
     console.error(err.stack);
