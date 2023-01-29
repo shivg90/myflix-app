@@ -47,6 +47,15 @@
 
      <tbody>   
       <tr>
+          <td>Login</td>
+          <td>/login</td>
+          <td>POST</td>
+          <td>-</td>
+          <td>-</td>
+          <td>Allows registered users to login with token</td>
+      </tr>
+
+      <tr>
           <td>Returns a list of all movies</td>
           <td>/movies</td>
           <td>GET</td>
@@ -57,16 +66,16 @@
 
       <tr>
         <td>Returns data about single movie by title</td>
-        <td>/movies/:title</td>
+        <td>/movies/:Title</td>
         <td>GET</td>
-        <td>:title</td>
+        <td>:Title</td>
         <td>-</td>
         <td>A JSON object holding data about a single movie</td>
       </tr>
 
       <tr>
         <td>Returns data about a genre by title</td>
-        <td>/movies/genre/:genreName</td>
+        <td>/movies/genre/:Name</td>
         <td>GET</td>
         <td>:genreName</td>
         <td>-</td>
@@ -75,11 +84,20 @@
 
       <tr>
         <td>Returns data about a director by name</td>
-        <td>/movies/director/:directorName</td>
+        <td>/movies/director/:Name</td>
         <td>GET</td>
         <td>:directorName</td>
         <td>-</td>
         <td>A JSON object holding data about a specific director</td>
+      </tr>
+
+      <tr>
+        <td>Allows users to add a movie to the database</td>
+        <td>/movies</td>
+        <td>POST</td>
+        <td>-</td>
+        <td>A JSON object holding data about the movie to add, structured like: { "Title": "String","Description": "String"}</td>
+        <td>A JSON object holding data about the movie added, structured like: { "Title: "String, "Description": "String"}</td>
       </tr>
 
       <tr>
@@ -102,18 +120,18 @@
 
       <tr>
         <td>Allows users to add a movie to their favourites</td>
-        <td>/users/:Username/:MovieID</td>
+        <td>/users/:id/:favorites</td>
         <td>POST</td>
-        <td>:Username, :MovieID</td>
+        <td>:UserId</td>
         <td>-</td>
         <td>A JSON object holding data about the user and the movie that was added</td>
       </tr>
 
       <tr>
         <td>Allows users to remove a movie from their favourites</td>
-        <td>/users/:Username/:MovieID</td>
+        <td>/users/:id/:favorites</td>
         <td>DELETE</td>
-        <td>:Username, :MovieID</td>
+        <td>:UserId</td>
         <td>-</td>
         <td>A JSON object holding data about the user and the movie that was removed</td>
       </tr>
