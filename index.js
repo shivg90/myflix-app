@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'https://movieapi-9rx2.onrender.com/'];
+let allowedOrigins = ['http://localhost:8080', 'https://movieapi-9rx2.onrender.com/'];
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -42,8 +42,6 @@ accessLogStream = fs.createWriteStream(path.join(__dirname, './log.txt.log'), {f
 /* mongoose.connect('mongodb://127.0.0.1:27017/myflixDB', { useNewUrlParser: true, useUnifiedTopology: true }); */
 
 mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-
-
 
 app.use(express.static('public'));
 app.use(morgan('common', {
