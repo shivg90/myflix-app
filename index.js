@@ -105,7 +105,6 @@ app.get('/movies/director/:directorName', passport.authenticate('jwt', { session
 });
 
 /* async code, POST route to add a new movie to database at endpoint /movies */
-
 app.post('/movies', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
   const movie = await Movies.findOne({Title: req.body.Title})
@@ -137,39 +136,6 @@ app.post('/movies', passport.authenticate('jwt', { session: false }), async (req
 }
 });
 
-/* POST route to add a new movie to database at endpoint /movies 
-app.post('/movies', (req, res) => {
-  Movies.findOne({ Username: req.body.Title })
-    .then((movie) => {
-      if (movie) {
-        return res.status(400).send(req.body.Title + 'already exists');
-      } else {
-        Movies.create({
-          Title: req.body.Title,
-          Description: req.body.Description,
-          Genre: {
-            Name: req.body.Name,
-            Description: req.body.Description,
-          },
-          Director: {
-            Name: req.body.Name,
-            Bio: req.body.Bio,
-          },
-          ImagePath: req.body.ImageURL,
-          Featured: req.body.Boolean,
-          Release: req.body.Date
-        })
-          .then((movie) => {
-            res.status(201).json(movie);
-          })
-          .catch((err) => {
-            console.log(err);
-            res.status(500).send('Error: ' + err);
-          });
-        }
-    });
-}); */
-
 /* GET all users at endpoint /users */
 app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.find()
@@ -183,7 +149,6 @@ app.get('/users', passport.authenticate('jwt', { session: false }), (req, res) =
 });
 
 /* GET a specific user by username at endpoint /users/:Username */
-
 app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
   Users.findOne({ Username: req.params.Username })
     .then((users) => {
@@ -272,7 +237,6 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
 });
 
 /* async code, add a movie to favorites at endpoint /users/:id/favorites */
-
 app.post('/users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const user = await Users.findById(req.params.id);
@@ -285,25 +249,7 @@ app.post('/users/:id/favorites', passport.authenticate('jwt', { session: false }
   }
 }); 
 
-
-/* POST allow users to add a movie to their favourites at endpoint /users/:Username/favorites 
-app.post('/users/:Username/movies/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, {
-    $push: { FavoriteMovies: req.params.MovieID }
-  },
-  { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
-  });
-}); */
-
 // async code, delete a movie from favorites at endpoint /users/:id/favorites //
-
 app.delete('/users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const user = await Users.findById(req.params.id);
@@ -315,22 +261,6 @@ app.delete('/users/:id/favorites', passport.authenticate('jwt', { session: false
     res.status(404).json( { message: err.message } );
   }
   });
-
-/* DELETE: allow users to remove a movie from favourites at endpoint /users/:Username/:MovieId
-app.delete('/users/:Username/:MovieId', (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username }, {
-    $pull: { FavoriteMovies: req.params.MovieId }
-  },
-  { new: true }, // This line makes sure that the updated document is returned
-  (err, updatedUser) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    } else {
-      res.json(updatedUser);
-    }
-  });
-}); */
 
 /* DELETE a user at endpoint /users/:Username */
 app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
