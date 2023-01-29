@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = ['http://localhost:8080', 'http://testsite.com', 'https://movieapi-9rx2.onrender.com/'];
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -51,7 +51,7 @@ app.use(morgan('common', {
 }));
 app.use(morgan('dev'));
 
-/* homepage text response */
+/* welcome page text response */
 app.get('/', (req, res) => {
   res.send('Welcome to MyFlix Movie App!');
 });
