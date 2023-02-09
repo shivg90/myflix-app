@@ -165,7 +165,7 @@ app.post('/users',
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail(),
-    check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'YYYY/MM/DD'})
+    check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'DD/MM/YYYY'})
   ], (req, res) => {
     let errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -208,7 +208,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
   check('Password', 'Password is required').not().isEmpty(),
   check('Email', 'Email does not appear to be valid').isEmail(),
-  check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'YYYY/MM/DD'})
+  check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'DD/MM/YYYY'})
 ], (req, res) => {
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
