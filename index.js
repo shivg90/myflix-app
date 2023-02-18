@@ -261,9 +261,9 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
   }); 
 
 // async code, delete a movie from favorites at endpoint /users/:id/favorites //
-app.delete('/users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
+app.delete('/users/:Username/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
-    const user = await Users.findById(req.params.id);
+    const user = await Users.findOneAndUpdate(req.params.Username);
     user.FavoriteMovies.pull(req.body.movieId);
     await user.save();
     res.status(200).json( { message: "Movie removed from favorites" } );
