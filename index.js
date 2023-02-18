@@ -235,7 +235,8 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
 });
 
 /* async code, add a movie to favorites at endpoint /users/:id/favorites */
-app.post('/users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
+// changing :id to Username to match client side routing
+/* app.post('/users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const user = await Users.findById(req.params.id);
     user.FavoriteMovies.push(req.body.movieId);
@@ -245,7 +246,19 @@ app.post('/users/:id/favorites', passport.authenticate('jwt', { session: false }
     catch(err) {
     res.status(404).json( { message: err.message } );
   }
-}); 
+}); */
+
+  app.post('/users/:Username/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    try {
+      const user = await Users.findOneAndUpdate(req.params.Username);
+      user.FavoriteMovies.push(req.body.movieId);
+      await user.save();
+      res.status(200).json( { message: "Movie added to favorites" } );
+    }
+      catch(err) {
+      res.status(404).json( { message: err.message } );
+    }
+  }); 
 
 // async code, delete a movie from favorites at endpoint /users/:id/favorites //
 app.delete('/users/:id/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
