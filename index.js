@@ -277,7 +277,26 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
     });
   });
 
+  // remove movie from favorites, updated code
+  app.delete('/users/:Username/movies/:MovieID', passport.authenticate( 'jwt', { session: false }), (req, res) => {
+    Users.findOneAndUpdate({ Username: req.params.Username }, {
+       $push: { FavoriteMovies: req.params.MovieID },
+      },
+       { $pull: { FavoriteMovies: req.params.MovieID }
+      },
+      { new: true },
+      function(err, updatedUser) {  
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updatedUser);
+        }
+      });
+  });
+
 // async code, delete a movie from favorites at endpoint /users/:id/favorites //
+/* OLD CODE
 app.delete('/users/:Username/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const user = await Users.findOneAndUpdate(req.params.Username);
@@ -288,7 +307,7 @@ app.delete('/users/:Username/favorites', passport.authenticate('jwt', { session:
   catch(err) {
     res.status(404).json( { message: err.message } );
   }
-  });
+  }); */
 
 /* DELETE a user at endpoint /users/:Username */
 app.delete('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
