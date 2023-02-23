@@ -248,7 +248,8 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
   }
 }); */
 
-  app.post('/users/:Username/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
+// add move to favorite (old code 23.02)
+  /*app.post('/users/:Username/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
     try {
       const user = await Users.findOneAndUpdate(req.params.Username);
       user.FavoriteMovies.push(req.body.movieId);
@@ -258,7 +259,23 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
       catch(err) {
       res.status(404).json( { message: err.message } );
     }
-  }); 
+  }); */
+
+  //add movie to favorite, updated code 
+  app.post('/users/:Username/movies/:MovieID', passport.authenticate( 'jwt', { session: false }), (req, res) => {
+    Users.findOneAndUpdate({ Username: req.params.Username }, {
+       $push: { FavoriteMovies: req.params.MovieID }
+     },
+     { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser);
+      }
+    });
+  });
 
 // async code, delete a movie from favorites at endpoint /users/:id/favorites //
 app.delete('/users/:Username/favorites', passport.authenticate('jwt', { session: false }), async (req, res) => {
