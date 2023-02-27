@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'https://movieapi-9rx2.onrender.com/', 'http://localhost:1234'];
+let allowedOrigins = ['http://localhost:8080', 'https://movieapi-9rx2.onrender.com/', 'http://localhost:1234', 'http://localhost:56971'];
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -263,11 +263,11 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
 
   //add movie to favorite, updated code 
   app.post('/users/:Username/movies/:MovieID', passport.authenticate( 'jwt', { session: false }), (req, res) => {
-    Users.findOneAndUpdate({ Username: req.params.Username }, {
-       $push: { FavoriteMovies: req.params.MovieID }
+    Users.findOneAndUpdate({ Username: req.params.Username }, 
+       { $push: { FavoriteMovies: req.params.MovieID }
      },
      { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
+     (err, updatedUser) => {
       if (err) {
         console.error(err);
         res.status(500).send('Error: ' + err);
