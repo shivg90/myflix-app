@@ -214,6 +214,7 @@ app.post('/users',
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     }
+
     let hashedPassword = Users.hashPassword(req.body.Password);
 
     let updatedFields = {};
@@ -222,10 +223,10 @@ app.post('/users',
       updatedFields.Email = req.body.Email;
     }
     if(req.body.Birthday) {
-      updatedFields.Email = req.body.Birthday;
+      updatedFields.Birthday = req.body.Birthday;
     }
     if(req.body.Username) {
-      updatedFields.Email = req.body.Username;
+      updatedFields.Username = req.body.Username;
     }
     if(req.body.Password) {
       updatedFields.Password = req.body.Password;
