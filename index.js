@@ -227,6 +227,9 @@ app.post('/users',
     if(req.body.Username) {
       updatedFields.Email = req.body.Username;
     }
+    if(req.body.Password) {
+      updatedFields.Password = req.body.Password;
+    }
    
     Users.findOneAndUpdate({ Username: req.params.Username }, 
     { $set: updatedFields },
