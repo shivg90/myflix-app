@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const { check, validationResult } = require('express-validator');
 
 const cors = require('cors');
-let allowedOrigins = ['http://localhost:8080', 'https://movieapi-9rx2.onrender.com/', 'http://localhost:1234', 'http://localhost:56971'];
+let allowedOrigins = ['http://localhost:8080', 'https://movieapi-9rx2.onrender.com/', 'http://localhost:1234', 'http://localhost:56971', 'https://shivg90-myflix-movie-app.netlify.app'];
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -215,6 +215,7 @@ app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
     return res.status(422).json({ errors: errors.array() });
   }
   let hashedPassword = Users.hashPassword(req.body.Password);
+
   Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
       Username: req.body.Username,
