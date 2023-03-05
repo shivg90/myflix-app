@@ -202,48 +202,37 @@ app.post('/users',
     });
 
 /* UPDATE user info by username at endpoint /users/:Username */
-  app.put('/users/:Username', passport.authenticate('jwt', { session: false }), 
-  [
-    check('Username', 'Username is required and minimum length is 5 characters').isLength({min: 5}),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail(),
-    //check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'DD/MM/YYYY'})//
-  ], (req, res) => {
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }), 
+[
+  check('Username', 'Username is required and minimum length is 5 characters').isLength({min: 5}),
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail(),
+  //check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'DD/MM/YYYY'})//
+], (req, res) => {
+  let errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
+  let hashedPassword = Users.hashPassword(req.body.Password);
+  Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
+    {
+      Username: req.body.Username,
+      Password: hashedPassword,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday,
+    },
+  },
+  { new: true }, // This line makes sure that the updated document is returned
+  (err, updatedUser) => {
+    if(err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser);
     }
-
-    let hashedPassword = Users.hashPassword(req.body.Password);
-
-    let updatedFields = {};
-
-    if(req.body.Email) {
-      updatedFields.Email = req.body.Email;
-    }
-    if(req.body.Birthday) {
-      updatedFields.Birthday = req.body.Birthday;
-    }
-    if(req.body.Username) {
-      updatedFields.Username = req.body.Username;
-    }
-    if(req.body.Password) {
-      updatedFields.Password = req.body.Password;
-    }
-   
-    Users.findOneAndUpdate({ Username: req.params.Username }, 
-    { $set: updatedFields },
-    { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
-      if(err) {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      } else {
-        res.json(updatedUser);
-      }
-    });
   });
+});
 
 /* async code, add a movie to favorites at endpoint /users/:id/favorites */
 // changing :id to Username to match client side routing
