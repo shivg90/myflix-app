@@ -202,28 +202,21 @@ app.post('/users',
     });
 
 /* UPDATE user info by username at endpoint /users/:Username */
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }), 
-[
-  check('Username', 'Username is required and minimum length is 5 characters').isLength({min: 5}),
-  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-  check('Password', 'Password is required').not().isEmpty(),
-  check('Email', 'Email does not appear to be valid').isEmail(),
-  //check('Birthday', 'Birthday should be in the format DD/MM/YYYY').isDate({format:'DD/MM/YYYY'})//
-], (req, res) => {
+app.patch('/users/:Username', passport.authenticate('jwt', { session: false }), 
+ (req, res) => {
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
-  let hashedPassword = Users.hashPassword(req.body.Password);
+  let updateObj = {};
 
-  Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
-    {
-      Username: req.body.Username,
-      Password: hashedPassword,
-      Email: req.body.Email,
-      Birthday: req.body.Birthday,
-    },
-  },
+  if (req.body.Username !== undefined) updateObj.Username = req.body.Username;
+  if (req.body.Password !== undefined) updateObj.Password = Users.hashPassword(req.body.Password);
+  if (req.body.Email !== undefined) updateObj.Email = req.body.Email;
+  if (req.body.Birthday !== undefined) updateObj.Birthday = req.body.Birthday;
+  
+
+  Users.findOneAndUpdate({ Username: req.params.Username }, { $set: updateObj },
   { new: true }, // This line makes sure that the updated document is returned
   (err, updatedUser) => {
     if(err) {
