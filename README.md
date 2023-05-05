@@ -10,8 +10,8 @@ Two client side components which use the API:
 - https://github.com/shivg90/myFlix-client
 - https://github.com/shivg90/myFlix-Angular-client
 
-## Features
-
+## Description
+### Features
 - Return a list of ALL movies to the user
 - Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user
 - Return data about a genre (description) by name/title (e.g., “Thriller”)
@@ -22,10 +22,19 @@ Two client side components which use the API:
 - Allow users to remove a movie from their list of favorites
 - Allow existing users to deregister
 
+## Getting Started
 ## 🚀 Tech Stack
 - Node.js
 - Express
 - MongoDB
+
+## Development Environment
+
+- Clone this repository from GitHub
+- Install node.js and mongoDB
+- Run npm install
+- Run npm start to connect to localhost server (default: 8080)
+- API endpoints can be tested using Postman
 
 ## Dependencies
 - body-parser
@@ -36,20 +45,9 @@ Two client side components which use the API:
 - cors
 - bcrypt
 
-## Local Environment
 
-1. Clone this repository from GitHub
-2. Install node.js and mongoDB
-3. Run npm install
-4. Run npm start to connect to localhost server (default: 8080)
 
-## Testing
 
-The API endpoints can be tested using Postman
-
-## Author
-
-Please contact the API author at siobhangatenby@gmail.com for any questions or comments.
 
 
 
